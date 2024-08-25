@@ -1,78 +1,83 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <unistd.h>
-#include <string.h>
+#include <cstring>
+#include <thread>
 
-using namespace std;
+
+// Function to handle communication with each client
+void handle_client(int client_sock) {
+    char buffer[4096];
+    int read_bytes;
+
+    // Receive data from the client
+    while ((read_bytes = recv(client_sock, buffer, sizeof(buffer) - 1, 0)) > 0) {
+        buffer[read_bytes] = '\0'; // Null-terminate the received data
+        std::cout << "Received from client: " << buffer << std::endl;
+
+        // Echo the data back to the client
+        int sent_bytes = send(client_sock, buffer, read_bytes, 0);
+        if (sent_bytes < 0) {
+            perror("Error sending to client");
+            break;
+        }
+    }
+
+    if (read_bytes == 0) {
+        std::cout << "Client disconnected" << std::endl;
+    } else if (read_bytes < 0) {
+        perror("Error reading from client");
+    }
+
+    // Close the client socket after communication is done
+    close(client_sock);
+}
 
 int main() {
     const int server_port = 5555;
-    const int buffer_size = 4096;
-    
-    // Create a socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
-        perror("error creating socket");
+        perror("Error creating socket");
         return 1;
     }
+    std::cout << "Socket created" << std::endl;
 
-    // Define server address
     struct sockaddr_in sin;
     memset(&sin, 0, sizeof(sin));
     sin.sin_family = AF_INET;
     sin.sin_addr.s_addr = INADDR_ANY;
     sin.sin_port = htons(server_port);
 
-    // Bind the socket to the address
     if (bind(sock, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
-        perror("error binding socket");
+        perror("Error binding socket");
         close(sock);
         return 1;
     }
 
-    // Listen for incoming connections
     if (listen(sock, 5) < 0) {
-        perror("error listening on socket");
+        perror("Error listening on socket");
         close(sock);
         return 1;
     }
 
-    // Accept a client connection
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
-    int client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
-    if (client_sock < 0) {
-        perror("error accepting client");
-        close(sock);
-        return 1;
-    }
 
-    // Receive data from the client
-    char buffer[buffer_size];
-    int read_bytes = recv(client_sock, buffer, buffer_size, 0);
-    if (read_bytes == 0) {
-        // Client closed the connection
-        cout << "Client disconnected" << endl;
-        close(client_sock);
-    } else if (read_bytes < 0) {
-        // Error occurred
-        perror("error reading from client");
-        close(client_sock);
-    } else {
-        // Print received data
-        cout << "Received: " << buffer << endl;
-
-        // Send data back to the client (echo)
-        int sent_bytes = send(client_sock, buffer, read_bytes, 0);
-        if (sent_bytes < 0) {
-            perror("error sending to client");
+    while (true) {
+        std::cout << "Waiting for a client to connect..." << std::endl;
+        int client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
+        if (client_sock < 0) {
+            perror("Error accepting client");
+            continue;
         }
+
+        // Create a new thread for each client
+        std::thread client_thread(handle_client, client_sock);
+        client_thread.detach(); // Detach the thread so it can run independently
     }
 
-    // Close the sockets
-    close(client_sock);
     close(sock);
-
     return 0;
 }
