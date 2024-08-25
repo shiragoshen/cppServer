@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build server",
             "type": "shell",
             "command": "clang++",
             "args": [
@@ -10,6 +10,22 @@
                 "server.cpp",
                 "-o",
                 "server"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "build client",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-std=c++11",
+                "client.cpp",
+                "-o",
+                "client"
             ],
             "group": {
                 "kind": "build",
