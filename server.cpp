@@ -42,6 +42,7 @@ int main() {
         perror("Error creating socket");
         return 1;
     }
+    std::cout << "Socket created" << std::endl;
 
     struct sockaddr_in sin;
     memset(&sin, 0, sizeof(sin));
@@ -65,6 +66,7 @@ int main() {
     unsigned int addr_len = sizeof(client_sin);
 
     while (true) {
+        std::cout << "Waiting for a client to connect..." << std::endl;
         int client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
         if (client_sock < 0) {
             perror("Error accepting client");
