@@ -6,16 +6,22 @@
             "type": "shell",
             "command": "clang++",
             "args": [
-                "-std=c++11",
-                "server.cpp",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-pthread",
+                "${workspaceFolder}/handle_client.cpp",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/recommendations.cpp",
+                "${workspaceFolder}/record_history.cpp",
                 "-o",
-                "server"
+                "${workspaceFolder}/server"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"]
-        },
+        }
     ]
 }
