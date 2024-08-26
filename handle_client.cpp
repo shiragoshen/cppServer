@@ -24,15 +24,16 @@ void handle_client(int client_sock) {
             record_watch_history(user_id, video_id);
             std::string response = "Recorded: " + user_id + " watched " + video_id;
             send(client_sock, response.c_str(), response.size(), 0);
-            std::cout << response << std::endl;
+
         } else if (command == "RECOMMEND") {
-            std::string response = get_recommendations(user_id, video_id);
-            send(client_sock, response.c_str(), response.size(), 0);
-            std::cout << response << std::endl;
+            std::string recommendations = get_recommendations(user_id, video_id);
+
+            // Send the JSON string directly over the socket
+            send(client_sock, recommendations.c_str(), recommendations.size(), 0);
+
         } else {
             std::string response = "Unknown command: " + command;
             send(client_sock, response.c_str(), response.size(), 0);
-            std::cout << response << std::endl;
         }
     }
 
