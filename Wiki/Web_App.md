@@ -6,11 +6,11 @@ This web application serves as the front-end interface for a video-sharing socia
 ## Features:
 1. **User Authentication:** Securely register new users and log into existing accounts.
 
-<img src="screenshots/web/sign_up.png" alt="signup" width="auto" height="300"> <img src="screenshots/web/sign_in.png" alt="signin" width="auto" height="300">
+<img src="screenshots/web/sign_up.png" alt="signup" width="auto" height="250"> <img src="screenshots/web/sign_in.png" alt="signin" width="auto" height="250">
 
 2. **Video Feed Display:** Browse the most viewed and randomly selected videos on the home page.
 
-<img src="screenshots/web/home_screen.png" alt="homescreen" width="auto" height="400"> <img src="screenshots/web/side_menu.png" alt="videofeed" width="auto" height="400">
+<img src="screenshots/web/home_screen.png" alt="homescreen" width="auto" height="200"> <img src="screenshots/web/side_menu.png" alt="videofeed" width="auto" height="200">
 
 3. **Video Management:** Upload, edit, and delete videos.
 
