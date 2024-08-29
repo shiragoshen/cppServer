@@ -8,7 +8,7 @@
 // Global map to track which users have watched which videos
 std::unordered_map<std::string, std::unordered_set<std::string>> videoWatchers;
 
-const int SERVER_PORT = 5555; // The port number the server will listen on
+const int SERVER_PORT = 55555; // The port number the server will listen on
 const std::string WATCH_HISTORY_FILE = "watch_history.txt"; // File to store watch history
 
 int main() {
