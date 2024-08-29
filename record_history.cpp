@@ -1,4 +1,3 @@
-// record_history.cpp
 #include "server.h"
 #include <fstream>
 #include <string>
