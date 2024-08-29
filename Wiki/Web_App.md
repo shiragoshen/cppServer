@@ -7,7 +7,6 @@ This web application serves as the front-end interface for a video-sharing socia
 1. **User Authentication:** Securely register new users and log into existing accounts.
 
 <img src="screenshots/web/sign_up.png" alt="signup" width="auto" height="250"> <img src="screenshots/web/sign_in.png" alt="signin" width="auto" height="250">
-<img src="screenshots/web/sign_up.png" alt="signup" width="auto" height="250"> <img src="screenshots/web/sign_in.png" alt="signin" width="auto" height="250">
 
 2. **Video Feed Display:** Browse the most viewed and randomly selected videos on the home page.
 
@@ -23,15 +22,15 @@ This web application serves as the front-end interface for a video-sharing socia
 
 5. **User Profile Management:** View and update user profiles, including profile picture and display name.
 
-<img src="screenshots/web/my_videos.png" alt="mypage" width="auto" height="250">
+<img src="screenshots/web/my_videos.png" alt="mypage" width="auto" height="300">
 
 6. **Search Functionality:** Search for videos by video name.
 
-<img src="screenshots/web/search.png" alt="search" width="auto" height="250">
+<img src="screenshots/web/search.png" alt="search" width="auto" height="300">
 
 7. **Dark/Light Mode:** Supports dark and light themes which are automatically set by device's preferences, for an optimal user experience in different lighting conditions.
 
-<img src="screenshots/web/dark_mode3.png" alt="darkhome" width="auto" height="250"> <img src="screenshots/web/dark_mode2.png" alt="darkvideo" width="auto" height="250"> <img src="screenshots/web/dark_mode1.png" alt="darkuser" width="auto" height="250">
+<img src="screenshots/web/dark_mode3.png" alt="darkhome" width="auto" height="250"> <img src="screenshots/web/dark_mode2.png" alt="darkvideo" width="auto" height="250">
 
 ## App Flow
 
