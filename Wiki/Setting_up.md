@@ -30,7 +30,7 @@
    ````
 **Port Configuration:**
 
-The server listens on port 5555 by default. If you need to change the port, you can modify the SERVER_PORT constant in the source code and rebuild the project.
+The server listens on port 55555 by default. If you need to change the port, you can modify the SERVER_PORT constant in the source code and rebuild the project.
    
 ## Cloning the NodeJS Server Repository (and the web app)
 
